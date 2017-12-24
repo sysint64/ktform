@@ -2,6 +2,7 @@
     <string name="app_name">ktform</string>
     <string name="required_error">This field is required</string>
     <string name="email_validation_error">Email validation error</string>
+    <string name="phone_validation_error">Phone validation error</string>
     <string name="min_error">String too small (need minimum %d)</string>
     <string name="max_error">String too large (need maximum %d)</string>
 </resources>

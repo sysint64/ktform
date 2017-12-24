@@ -1,18 +1,18 @@
 package ru.kabylin.andrey.ktform.validators
 
 import android.content.Context
+import android.content.res.Resources
 import android.support.annotation.StringRes
 
 typealias Hook = (value: Any?) -> Pair<Boolean, Boolean>
 typealias ErrorTextHook = (value: Any?) -> Pair<Boolean, String>
 
-abstract class Validator {
+abstract class Validator(var resources: Resources?) {
     private val hooks: MutableList<Hook> = ArrayList()
     private val errorTextsHooks: MutableList<ErrorTextHook> = ArrayList()
-    lateinit var context: Context
 
     fun errorFromRes(@StringRes res: Int): String {
-        return context.resources.getString(res)
+        return resources?.getString(res) ?: "Unspecified error"
     }
 
     fun addHook(hook: Hook): Validator {
