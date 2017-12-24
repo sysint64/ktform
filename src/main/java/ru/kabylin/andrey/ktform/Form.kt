@@ -29,6 +29,12 @@ open class Form(val context: Context, val container: ViewGroup? = null) {
 
         return result
     }
+
+    fun setErrorForField(field: String, error: String) {
+        fields
+            .filter { it.name == field }
+            .map { it.setError(error) }
+    }
 }
 
 // DSL
