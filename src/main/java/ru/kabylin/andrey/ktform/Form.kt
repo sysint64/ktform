@@ -2,10 +2,13 @@ package ru.kabylin.andrey.ktform
 
 import android.content.Context
 import android.view.ViewGroup
+import android.widget.Button
 import ru.kabylin.andrey.ktform.fields.Field
 
 open class Form(val context: Context, val container: ViewGroup? = null) {
     private val fields: MutableList<Field> = ArrayList()
+    private var submitButton: Button? = null
+    private var onSubmit: (() -> Unit)? = null
 
     fun addField(field: Field) {
         if (field in fields)
@@ -34,6 +37,40 @@ open class Form(val context: Context, val container: ViewGroup? = null) {
         fields
             .filter { it.name == field }
             .map { it.setError(error) }
+    }
+
+    fun disable() {
+        fields.forEach { it.isEnabled = false }
+        submitButton?.isEnabled = false
+    }
+
+    fun enable() {
+        fields.forEach { it.isEnabled = true }
+        submitButton?.isEnabled = true
+    }
+
+    fun attachSubmitButton(submitButton: Button) {
+        this.submitButton = submitButton
+
+        if (this.onSubmit != null) {
+            this.submitButton?.setOnClickListener {
+                if (isValid()) {
+                    this.onSubmit?.invoke()
+                }
+            }
+        }
+    }
+
+    fun onSubmit(onSubmit: () -> Unit) {
+        this.onSubmit = onSubmit
+
+        if (this.submitButton != null) {
+            this.submitButton?.setOnClickListener {
+                if (isValid()) {
+                    this.onSubmit?.invoke()
+                }
+            }
+        }
     }
 }
 

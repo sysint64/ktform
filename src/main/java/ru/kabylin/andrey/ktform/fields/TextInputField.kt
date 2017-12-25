@@ -49,6 +49,13 @@ open class TextInputField(name: String, val container: ViewGroup? = null) : Fiel
     fun textInputLayoutAttrs(init: (TextInputLayout).() -> Unit) {
         textInputLayout.init()
     }
+
+    override var isEnabled: Boolean
+        get() = textInputLayout.isEnabled
+        set(value) {
+            textInputLayout.isEnabled = value
+            editText.isEnabled = value
+        }
 }
 
 // DSL

@@ -14,6 +14,8 @@ abstract class Field(val name: String, var exclude: Boolean = false) {
                 validator.resources = form.context.resources
         }
 
+    abstract var isEnabled: Boolean
+
     abstract fun getValue(): Any
 
     abstract fun inflate(parent: ViewGroup)
