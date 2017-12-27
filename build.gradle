@@ -28,7 +28,7 @@ dependencies {
 
     implementation "com.android.support:appcompat-v7:$support_lib_version"
     implementation "com.android.support:design:$support_lib_version"
-    implementation "com.googlecode.libphonenumber:libphonenumber:3.0.0"
+    implementation "com.googlecode.libphonenumber:libphonenumber:8.3.0"
 
     implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
 

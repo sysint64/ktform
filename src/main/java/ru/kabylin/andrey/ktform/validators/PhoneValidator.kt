@@ -11,9 +11,15 @@ class PhoneValidator(resources: Resources? = null): Validator(resources) {
 
     override fun isValid(value: Any?): Boolean {
         val phoneUtil = PhoneNumberUtil.getInstance()
+        val acceptableSymbols = "+0123456789"
 
         return when (value) {
             is CharSequence -> {
+                value.forEach {
+                    if (it !in acceptableSymbols)
+                        return false
+                }
+
                 try {
                     val numberProto = phoneUtil.parse(value.toString(), null)
                     phoneUtil.isValidNumber(numberProto)
