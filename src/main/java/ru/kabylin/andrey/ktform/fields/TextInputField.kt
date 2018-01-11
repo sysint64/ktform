@@ -7,8 +7,8 @@ import ru.kabylin.andrey.ktform.Form
 import ru.kabylin.andrey.ktform.validators.Validator
 
 open class TextInputField(name: String, val container: ViewGroup? = null) : Field(name) {
-    private lateinit var editText: EditText
-    private lateinit var textInputLayout: TextInputLayout
+    protected lateinit var editText: EditText
+    protected lateinit var textInputLayout: TextInputLayout
 
     var hint: String = ""
         set(value) {
